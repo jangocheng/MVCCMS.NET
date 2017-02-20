@@ -1,0 +1,136 @@
+﻿
+
+@model IEnumerable<MVCCMS.NET.Model.Manager>
+@{
+    Layout = null;
+    var managerRoleList = ViewBag.ManagerRoleList as List<MVCCMS.NET.Model.ManagerRole>;
+}
+
+<div class="bjui-pageHeader">
+    <form id="pagerForm" data-toggle="ajaxsearch" action="@Url.Action("Index")" method="post">
+        <input type="hidden" name="pageSize" value="@ViewBag.pageSize">
+        <input type="hidden" name="pageCurrent" value="@ViewBag.pageCurrent">
+        <input type="hidden" name="orderField" value="@ViewBag.orderField">
+        <input type="hidden" name="orderDirection" value="@ViewBag.orderDirection">
+        <div class="bjui-searchBar">
+
+
+            <label>@Html.DisplayNameFor(model => model.Username)</label>
+            <input type="text" name="Username" id="Username" value="@ViewBag.Username" size="10">
+            <label>@Html.DisplayNameFor(model => model.Nickname)</label>
+            <input type="text" name="Nickname" id="Nickname" value="@ViewBag.Nickname" size="10">
+            
+            <label>@Html.DisplayNameFor(model => model.IsLock)</label>
+            <input type="radio" name="IsLock" id="IsLock1" data-toggle="icheck" value="true" data-label="是" @(ViewBag.IsLock == "true" ? "checked" : "")>
+            <input type="radio" name="IsLock" id="IsLock2" data-toggle="icheck" value="false" data-label="否" @(ViewBag.IsLock == "false" ? "checked" : "")>
+
+            <button type="submit" class="btn-default" data-icon="search">查询</button>&nbsp;
+            <a class="btn btn-orange" href="javascript:;" data-toggle="reloadsearch" data-clear-query="true" data-icon="undo">清空查询</a>
+            <div class="pull-right">
+                <button type="button" class="btn btn-green" data-toggle="dialog" data-options="{id:'ManagerCreate',title:'添加信息',height:'400',url:'@Url.Action("Create")'}" data-mask="true">添加信息</button>&nbsp;
+                <button type="button" class="btn-blue" data-url="@Url.Action("Delete")?id={#bjui-selected}" data-toggle="doajax" data-confirm-msg="确定要删除选中项吗？" data-icon="remove" title="删除点击条目变色选中的行数据">删除选中行</button>&nbsp;
+            </div>
+        </div>
+    </form>
+</div>
+<div class="bjui-pageContent tableContent">
+    <table class="table table-bordered table-hover table-striped table-top" data-toggle="tablefixed" data-width="100%" data-nowrap="true">
+        <thead>
+            <tr>
+                <th data-order-field="Username">
+                    @Html.DisplayNameFor(model => model.Username)
+                </th>
+                <th data-order-field="Password">
+                    @Html.DisplayNameFor(model => model.Password)
+                </th>
+                <th data-order-field="Nickname">
+                    @Html.DisplayNameFor(model => model.Nickname)
+                </th>
+                <th data-order-field="Description">
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th data-order-field="IsSystem">
+                    @Html.DisplayNameFor(model => model.IsSystem)
+                </th>
+                <th data-order-field="RoleId">
+                    @Html.DisplayNameFor(model => model.RoleId)
+                </th>
+                <th data-order-field="AddTime">
+                    @Html.DisplayNameFor(model => model.AddTime)
+                </th>
+                <th data-order-field="LastLoginTime">
+                    @Html.DisplayNameFor(model => model.LastLoginTime)
+                </th>
+                <th data-order-field="IsLock">
+                    @Html.DisplayNameFor(model => model.IsLock)
+                </th>
+                <th width="26"><input type="checkbox" class="checkboxCtrl" data-group="ids" data-toggle="icheck"></th>
+                <th width="140">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr data-id="@item.Id">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Username)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Password)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nickname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsSystem)
+                    </td>
+                    <td>
+                        @{
+                            var name = managerRoleList.Find(p => p.Id == item.RoleId);
+                            if (name != null)
+                            {
+                                @name.RoleName
+                            }
+
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AddTime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastLoginTime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsLock)
+                    </td>
+                    <td><input type="checkbox" name="ids" data-toggle="icheck" value="@item.Id"></td>
+                    <td>
+                        <button type="button" class="btn btn-green" data-toggle="dialog" data-options="{id:'ManagerEdit',title:'编辑-@item.Id',height:'400',url:'@Url.Action("Edit")',data:{id:'@item.Id'}}" data-mask="true">编辑</button>&nbsp;
+                        <button type="button" class="btn btn-blue" data-toggle="dialog" data-options="{id:'ManagerDetails',title:'预览信息-@item.Id',height:'400',url:'@Url.Action("Details")',data:{id:'@item.Id'}}" data-mask="true">预览</button>&nbsp;
+                        <a href="@Url.Action("Delete", new {id=item.Id})" class="btn btn-red" data-toggle="doajax" data-confirm-msg="确定要删除该行信息吗？">删</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div class="bjui-pageFooter">
+    <div class="pages">
+        <span>每页&nbsp;</span>
+        <div class="selectPagesize">
+            <select data-toggle="selectpicker" data-toggle-change="changepagesize">
+                <option value="30">30</option>
+                <option value="60">60</option>
+                <option value="120">120</option>
+                <option value="150">150</option>
+            </select>
+        </div>
+        <span>&nbsp;条，共 @ViewBag.total 条</span>
+    </div>
+    <div class="pagination-box" data-toggle="pagination" data-total="@ViewBag.total" data-page-size="@ViewBag.pageSize" data-page-current="@ViewBag.pageCurrent">
+    </div>
+</div>
+

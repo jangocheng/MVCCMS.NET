@@ -1,0 +1,110 @@
+﻿
+@model IEnumerable<MVCCMS.NET.Model.Navigation>
+@{
+    Layout = null;
+}
+
+<div class="bjui-pageHeader">
+   
+        <form id="pagerForm" data-toggle="ajaxsearch" action="@Url.Action("Index")" method="post">
+
+        <div class="bjui-searchBar">
+            <button type="button" class="btn btn-green" data-toggle="dialog" data-options="{id:'NavigationCreate',title:'添加信息',height:'400',url:'@Url.Action("Create")'}" data-mask="true">添加信息</button>&nbsp;
+            <div class="pull-right">
+                <button type="button" class="btn-blue" data-url="@Url.Action("Delete")?id={#bjui-selected}" data-toggle="doajax" data-confirm-msg="确定要删除选中项吗？" data-icon="remove" title="删除点击条目变色选中的行数据">删除选中行</button>&nbsp;
+            </div>
+        </div>
+
+    </form>
+</div>
+<div class="bjui-pageContent tableContent">
+    <table class="table table-bordered table-hover table-striped table-top" data-toggle="tablefixed" data-width="100%" data-nowrap="true">
+        <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NavType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LinkUrl)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SortId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsLock)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ActionType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsSystem)
+            </th>
+            <th width="26"><input type="checkbox" class="checkboxCtrl" data-group="ids" data-toggle="icheck"></th>
+            <th width="100">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model)
+        {
+            <tr data-id="@item.Id">
+                <td>
+                    @Html.DisplayFor(modelItem => item.NavType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @if (item.ClassLayer == 1)
+                    {
+                        <i class="fa fa-folder-open"></i>
+                        @Html.DisplayFor(modelItem => item.Title)
+
+                    }
+                    else
+                    {
+                        <i class="fa fa-file-text" style="margin-left: @(item.ClassLayer*20)px;"></i>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    }
+                    @if (!string.IsNullOrEmpty(item.LinkUrl))
+                    {
+                        <b>(@item.LinkUrl)</b>
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SubTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LinkUrl)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SortId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsLock)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ActionType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsSystem)
+                </td>
+                <td><input type="checkbox" name="ids" data-toggle="icheck" value="@item.Id"></td>
+                <td>
+                    <button type="button" class="btn btn-green" data-toggle="dialog" data-options="{id:'NavigationEdit',title:'编辑-@item.Id',height:'400',url:'@Url.Action("Edit")',data:{id:'@item.Id'}}" data-mask="true">编辑</button>&nbsp;
+                    <a href="@Url.Action("Delete", new {id = item.Id})" class="btn btn-red" data-toggle="doajax" data-confirm-msg="确定要删除该行信息吗？">删</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+    
+</div>

@@ -1,0 +1,164 @@
+﻿
+@using MVCCMS.NET.Model
+@using MVCCMS.NET.Web.Areas.Admins.Controllers
+@model MVCCMS.NET.Model.ManagerRole
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = null;
+}
+
+<div class="bjui-pageContent tableContent">
+    <div class="bjui-doc">
+        <h3 class="page-header">基础信息</h3>
+        <form action="@Url.Action("Edit")" data-toggle="validate">
+            @Html.AntiForgeryToken()
+            <table class="table table-bordered table-striped table-condensed table-hover" width="100%">
+                <tbody>
+                    @Html.ValidationSummary(true , "" , new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.Id)
+
+                    <tr>
+                        <td width="200">
+                            @Html.LabelFor(model => model.RoleName , new { @class = "control-label x85" , @for = "RoleName" })
+                        </td>
+                        <td>
+                            <input type="text" name="RoleName" id="RoleName" value="@Model.RoleName" data-rule="required" size="15">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.IsSystem , new { @class = "control-label x85" , @for = "IsSystem" })
+                        </td>
+                        <td>
+                            <input type="radio" name="IsSystem" id="IsSystem1" data-toggle="icheck" value="true" data-rule="checked" @(Model.IsSystem ? "checked" : "") data-label="是">
+                            <input type="radio" name="IsSystem" id="IsSystem2" data-toggle="icheck" value="false" @(Model.IsSystem ? "" : "checked") data-label="否">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.SortId , new { @class = "control-label x85" , @for = "SortId" })
+                        </td>
+                        <td>
+                            <input type="text" name="SortId" id="SortId" value="@Model.SortId" size="5" data-toggle="spinner" data-min="0" data-max="100" data-step="1" data-rule="integer">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.DepartmentID , new { @class = "control-label x85" , @for = "DepartmentID" })
+                        </td>
+                        <td>
+                            <input type="text" name="DepartmentID" id="DepartmentID" value="@Model.DepartmentID" size="5" data-toggle="spinner" data-min="0" data-max="100" data-step="1" data-rule="integer">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+            <h3 class="page-header">角色权限</h3>
+            <blockquote class="point">
+                <p>如果勾选<code>显示</code>，请确保上级<code>显示</code>已经勾选</p>
+            </blockquote>
+            <table class="table table-bordered table-striped table-condensed table-hover" width="100%">
+                <tbody>
+                    @{
+                        var rolesvalues = ViewBag.rolesvalues as List<ManagerRoleValue>;
+                        var myNavValueList = ViewBag.MyNavValueList as List<NavigationRoleValue>;
+
+                        var navlist = AdminsToolsController.GetNavigationList();
+                        var controllerPermissions = AdminsToolsController.GetControllerPermission();
+                        var defaultcol = controllerPermissions.FirstOrDefault(p => p.ControllerName == "Panel");
+                        if (navlist != null && navlist.Any())
+                        {
+                            <tr>
+                                <td width="200">
+                                    <i class="fa fa-folder-open"></i>&nbsp;控制面板
+                                </td>
+                                <td>
+                                    @{foreach (var action in defaultcol.Action)
+                                        {
+
+                                            <input type="checkbox" name="roles" value="@action.ControllerName|@action.ActionName" checked="checked" data-toggle="icheck" data-label="@action.Description" checked />
+                                        }
+                                    }
+                                </td>
+                                <td></td>
+                            </tr>
+                                        foreach (var nav in navlist)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @if (nav.ClassLayer == 1)
+                                                    {
+                                                        <i class="fa fa-folder-open"></i>@nav.Title
+                                                    }
+                                                    else
+                                                    {
+                                                        <i class="fa fa-file-text" style="margin-left: @(nav.ClassLayer*15)px;"></i> @nav.Title
+                                                    }
+
+                                                </td>
+                                                @{
+                                                    var cont = controllerPermissions.FirstOrDefault(p => p.ControllerName == nav.ActionType);
+
+                                                }
+                                                <td>
+                                                    @if (myNavValueList.Any(p => p.ActionName == nav.Name))
+                                                    {
+                                                        <input type="checkbox" name="navs" value="@nav.Name" data-toggle="icheck" checked="checked" data-label="显示" />
+                                                    }
+                                                    else
+                                                    {
+                                                        <input type="checkbox" name="navs" value="@nav.Name" data-toggle="icheck" data-label="显示" />
+                                                    }
+
+
+                                                    @if (cont != null)
+                                                    {
+                                                        var contrv = rolesvalues.Where(p => p.ControllerName == cont.ControllerName);
+                                                        foreach (var action in cont.Action)
+                                                        {
+                                                            if (contrv.Any(p => p.ControllerName == action.ControllerName && p.ActionName == action.ActionName))
+                                                            {
+                                                                <input type="checkbox" name="roles" value="@action.ControllerName|@action.ActionName" data-toggle="icheck" data-label="@action.Description" checked="checked">
+                                                            }
+                                                            else
+                                                            {
+                                                                <input type="checkbox" name="roles" value="@action.ControllerName|@action.ActionName" data-toggle="icheck" data-label="@action.Description">
+                                                            }
+                                                        }
+                                                    }
+                                                </td>
+                                                <td><input type="checkbox" name="ckroles" data-toggle="icheck" data-label="全选" /></td>
+                                            </tr>
+                                                        }
+
+
+                                                    }
+                    }
+                </tbody>
+
+            </table>
+
+
+        </form>
+    </div>
+</div>
+<div class="bjui-pageFooter">
+    <ul>
+        <li><button type="button" class="btn-close" data-icon="close">取消</button></li>
+        <li><button type="submit" class="btn-default" data-icon="save">保存</button></li>
+    </ul>
+</div>
+
+<script>
+    $('input[name="ckroles"]').on('ifChanged', function (e) {
+        var checked = $(this).is(':checked');
+        var tr = $(this).closest("tr");
+        var listinput = tr.find("input[type=checkbox]");
+        if (checked)
+            listinput.iCheck('check');
+        else
+            listinput.iCheck('uncheck');
+    })
+</script>

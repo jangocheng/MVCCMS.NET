@@ -1,0 +1,33 @@
+﻿@model MVCCMS.NET.Model.Manager
+@{
+    Layout = null;
+}
+<div class="bjui-pageContent tableContent">
+    <div class="bjui-doc">
+        <form action="@Url.Action("LoginMin")" data-toggle="validate">
+            @Html.AntiForgeryToken()
+            <table class="table table-bordered table-striped table-condensed table-hover" width="100%">
+                <tbody>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.Username, new {@class = "control-label x85", @for = "Username"})
+                        <input type="text" name="Username" id="Username" value="" size="15">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.Password, new {@class = "control-label x85", @for = "Password"})
+                        <input type="password" name="Password" id="Password" value="" data-rule="密码:required" size="15">
+                    </td>
+                </tr>
+               
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>
+<div class="bjui-pageFooter">
+    <ul>
+        <li><button type="submit" class="btn-default" data-icon="save">登录</button></li>
+    </ul>
+</div>

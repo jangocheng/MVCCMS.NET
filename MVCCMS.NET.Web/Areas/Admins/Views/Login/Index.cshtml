@@ -1,0 +1,51 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="renderer" content="webkit">
+    <title>网站后台管理系统</title>
+    <link href="~/Content/Css/Login.min.css" rel="stylesheet" />
+    <script src="~/Content/Plugins/jquery/jquery-1.8.2.min.js"></script>
+    <script src="~/Content/JS/Login.js"></script>
+    <script src="~/Content/JS/cloud.js"></script>
+    <script src="~/Content/Plugins/jquery/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Content/Plugins/layer/layer.js"></script>
+</head>
+<body>
+    <div id="mainBody">
+        <div id="cloud1" class="cloud"></div>
+        <div id="cloud2" class="cloud"></div>
+    </div>
+
+    <div class="logintop">
+        <span>网站后台管理系统</span>
+        <ul>
+            <li id="aboutus"><a href="javascript:About();">关于</a></li>
+        </ul>
+    </div>
+    <div class="loginbody">
+        <span class="systemlogo"></span>
+        <div class="loginbox">
+            @using (Ajax.BeginForm(new AjaxOptions
+            {
+                HttpMethod = "post" ,
+                OnSuccess = "AlertJsonModel"
+            }))
+            {
+                @Html.AntiForgeryToken()
+                <ul>
+                    <li><input id="Username" name="Username" type="text" class="loginuser" placeholder='请输入账户' /></li>
+                    <li><input id="Password" name="Password" type="password" class="loginpwd" placeholder='请输入密码' /></li>
+                    <li><input type="submit" id="loginbtn" class="loginbtn" value="登录" /></li>
+                </ul>}
+        </div>
+    </div>
+    <div class="loginbm">技术支持  2015 <a href="http://www.hhltsj.net" target="_blank">www.hhltsj.net</a>  </div>
+</body>
+
+</html>

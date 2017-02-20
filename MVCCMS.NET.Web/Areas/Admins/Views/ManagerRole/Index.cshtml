@@ -1,0 +1,99 @@
+﻿
+
+@model IEnumerable<MVCCMS.NET.Model.ManagerRole>
+@{
+    Layout = null;
+}
+
+<div class="bjui-pageHeader">
+    <form id="pagerForm" data-toggle="ajaxsearch" action="@Url.Action("Index")" method="post">
+        <input type="hidden" name="pageSize" value="@ViewBag.pageSize">
+        <input type="hidden" name="pageCurrent" value="@ViewBag.pageCurrent">
+        <input type="hidden" name="orderField" value="@ViewBag.orderField">
+        <input type="hidden" name="orderDirection" value="@ViewBag.orderDirection">
+        <div class="bjui-searchBar">
+            <label>关键字：</label><input type="text" value="@ViewBag.keywords" name="keywords" class="form-control" size="8">&nbsp;
+            <button type="button" class="showMoreSearch" data-toggle="moresearch" data-name="custom"><i class="fa fa-angle-double-down"></i></button>
+            <button type="submit" class="btn-default" data-icon="search">查询</button>&nbsp;
+            <a class="btn btn-orange" href="javascript:;" data-toggle="reloadsearch" data-clear-query="true" data-icon="undo">清空查询</a>
+            <div class="pull-right">
+                <button type="button" class="btn btn-green" data-toggle="dialog" data-options="{id:'ManagerRoleCreate',title:'添加信息',height:'500',width:'800',url:'@Url.Action("Create")'}" data-mask="true">添加信息</button>&nbsp;
+                <button type="button" class="btn-blue" data-url="@Url.Action("Delete")?id={#bjui-selected}" data-toggle="doajax" data-confirm-msg="确定要删除选中项吗？" data-icon="remove" title="删除点击条目变色选中的行数据">删除选中行</button>&nbsp;
+            </div>
+        </div>
+        <div class="bjui-moreSearch">
+            <label>@Html.DisplayNameFor(model => model.RoleName)</label>
+            <input type="text" name="RoleName" id="RoleName" value="@ViewBag.RoleName">
+            <label>@Html.DisplayNameFor(model => model.IsSystem)</label>
+            <input type="radio" name="IsSystem" id="IsSystem1" data-toggle="icheck" value="true" data-label="是" @(ViewBag.IsSystem == "true" ? "checked" : "")>
+            <input type="radio" name="IsSystem" id="IsSystem2" data-toggle="icheck" value="false" data-label="否" @(ViewBag.IsSystem == "false" ? "checked" : "")>
+            <label>@Html.DisplayNameFor(model => model.SortId)</label>
+            <input type="text" name="SortId" id="SortId" value="@ViewBag.SortId" size="5" data-toggle="spinner" data-min="0" data-max="100" data-step="1">
+            <label>@Html.DisplayNameFor(model => model.DepartmentID)</label>
+            <input type="text" name="DepartmentID" id="DepartmentID" value="@ViewBag.DepartmentID" size="5" data-toggle="spinner" data-min="0" data-max="100" data-step="1">
+        </div>
+    </form>
+</div>
+<div class="bjui-pageContent tableContent">
+    <table class="table table-bordered table-hover table-striped table-top" data-toggle="tablefixed" data-width="100%" data-nowrap="true">
+        <thead>
+            <tr>
+                <th data-order-field="RoleName">
+                    @Html.DisplayNameFor(model => model.RoleName)
+                </th>
+                <th data-order-field="IsSystem">
+                    @Html.DisplayNameFor(model => model.IsSystem)
+                </th>
+                <th data-order-field="SortId">
+                    @Html.DisplayNameFor(model => model.SortId)
+                </th>
+                <th data-order-field="DepartmentID">
+                    @Html.DisplayNameFor(model => model.DepartmentID)
+                </th>
+                <th width="26"><input type="checkbox" class="checkboxCtrl" data-group="ids" data-toggle="icheck"></th>
+                <th width="140">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr data-id="@item.Id">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RoleName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsSystem)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SortId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DepartmentID)
+                    </td>
+                    <td><input type="checkbox" name="ids" data-toggle="icheck" value="@item.Id"></td>
+                    <td>
+                        <button type="button" class="btn btn-green" data-toggle="dialog" data-options="{id:'ManagerRoleEdit',title:'编辑-@item.Id',height:'500',width:'800',url:'@Url.Action("Edit")',data:{id:'@item.Id'}}" data-mask="true">编辑</button>&nbsp;
+                        <a href="@Url.Action("Delete", new {id=item.Id})" class="btn btn-red" data-toggle="doajax" data-confirm-msg="确定要删除该行信息吗？">删</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div class="bjui-pageFooter">
+    <div class="pages">
+        <span>每页&nbsp;</span>
+        <div class="selectPagesize">
+            <select data-toggle="selectpicker" data-toggle-change="changepagesize">
+                <option value="30">30</option>
+                <option value="60">60</option>
+                <option value="120">120</option>
+                <option value="150">150</option>
+            </select>
+        </div>
+        <span>&nbsp;条，共 @ViewBag.total 条</span>
+    </div>
+    <div class="pagination-box" data-toggle="pagination" data-total="@ViewBag.total" data-page-size="@ViewBag.pageSize" data-page-current="@ViewBag.pageCurrent">
+    </div>
+</div>
+

@@ -1,0 +1,126 @@
+﻿
+@model IEnumerable<MVCCMS.NET.Model.ManagerLog>
+@{
+    Layout = null;
+}
+
+<div class="bjui-pageHeader">
+    <form id="pagerForm" data-toggle="ajaxsearch" action="@Url.Action("Index")" method="post">
+        <input type="hidden" name="pageSize" value="@ViewBag.pageSize">
+        <input type="hidden" name="pageCurrent" value="@ViewBag.pageCurrent">
+        <input type="hidden" name="orderField" value="@ViewBag.orderField">
+        <input type="hidden" name="orderDirection" value="@ViewBag.orderDirection">
+        <div class="bjui-searchBar">
+            <label>@Html.DisplayNameFor(model => model.UserName)</label>
+            <input type="text" name="UserName" id="UserName" value="@ViewBag.UserName" size="10" >
+            <label>@Html.DisplayNameFor(model => model.ActionType)</label>
+            <input type="text" name="ActionType" id="ActionType" value="@ViewBag.ActionType" size="10" >
+            <label>@Html.DisplayNameFor(model => model.UserIp)</label>
+            <input type="text" name="UserIp" id="UserIp" value="@ViewBag.UserIp" size="10" >
+            <label>@Html.DisplayNameFor(model => model.ControllerName)</label>
+            <input type="text" name="ControllerName" id="ControllerName" value="@ViewBag.ControllerName"  size="10">
+            <label>@Html.DisplayNameFor(model => model.ActionName)</label>
+            <input type="text" name="ActionName" id="ActionName" value="@ViewBag.ActionName"  size="10">
+
+            <button type="submit" class="btn-default" data-icon="search">查询</button>&nbsp;
+            <a class="btn btn-orange" href="javascript:;" data-toggle="reloadsearch" data-clear-query="true" data-icon="undo">清空查询</a>
+            <div class="pull-right">
+                <button type="button" class="btn-blue" data-url="@Url.Action("Delete")?id={#bjui-selected}" data-toggle="doajax" data-confirm-msg="确定要删除选中项吗？" data-icon="remove" title="删除点击条目变色选中的行数据">删除选中行</button>&nbsp;
+                <div class="btn-group">
+                    <button type="button" class="btn-default dropdown-toggle" data-toggle="dropdown" data-icon="copy">复选框-批量操作<span class="caret"></span></button>
+                    <ul class="dropdown-menu right" role="menu">
+                        <li><a href="@Url.Action("BatchDelete")" data-toggle="doajaxchecked" data-confirm-msg="确定要删除选中项吗？" data-idname="delids" data-group="ids">删除选中</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="bjui-pageContent tableContent">
+    <table class="table table-bordered table-hover table-striped table-top" data-toggle="tablefixed" data-width="100%" data-nowrap="true">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ActionType)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Remark)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserIp)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AddTime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ControllerName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ActionName)
+                </th>
+                <th width="26"><input type="checkbox" class="checkboxCtrl" data-group="ids" data-toggle="icheck"></th>
+                <th width="140">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr data-id="@item.Id">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ActionType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Remark)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserIp)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AddTime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ControllerName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ActionName)
+                    </td>
+                    <td><input type="checkbox" name="ids" data-toggle="icheck" value="@item.Id"></td>
+                    <td>
+                        <button type="button" class="btn btn-green" data-toggle="dialog" data-options="{id:'ManagerLogEdit',title:'编辑-@item.Id',height:'400',url:'@Url.Action("Edit")',data:{id:'@item.Id'}}" data-mask="true">编辑</button>&nbsp;
+                        <button type="button" class="btn btn-blue" data-toggle="dialog" data-options="{id:'ManagerLogDetails',title:'预览信息-@item.Id',height:'400',url:'@Url.Action("Details")',data:{id:'@item.Id'}}" data-mask="true">预览</button>&nbsp;
+                        <a href="@Url.Action("Delete", new {id=item.Id})" class="btn btn-red" data-toggle="doajax" data-confirm-msg="确定要删除该行信息吗？">删</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div class="bjui-pageFooter">
+    <div class="pages">
+        <span>每页&nbsp;</span>
+        <div class="selectPagesize">
+            <select data-toggle="selectpicker" data-toggle-change="changepagesize">
+                <option value="30">30</option>
+                <option value="60">60</option>
+                <option value="120">120</option>
+                <option value="150">150</option>
+            </select>
+        </div>
+        <span>&nbsp;条，共 @ViewBag.total 条</span>
+    </div>
+    <div class="pagination-box" data-toggle="pagination" data-total="@ViewBag.total" data-page-size="@ViewBag.pageSize" data-page-current="@ViewBag.pageCurrent">
+    </div>
+</div>
+

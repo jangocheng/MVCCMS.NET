@@ -1,0 +1,83 @@
+﻿
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@model MVCCMS.NET.Model.ManagerRole
+
+@{
+    ViewBag.Title = "Details";
+    Layout = null;
+}
+
+<div class="bjui-pageContent tableContent">
+	<div class="bjui-doc">
+        @*<h3 class="page-header">页面说明</h3>
+        <blockquote>
+            <p>提示</p>
+        </blockquote>
+        <blockquote class="point">
+            <p>提示2</p>
+        </blockquote>*@
+    @Html.AntiForgeryToken()
+    <table class="table table-bordered table-striped table-condensed table-hover" width="100%">
+            <tbody>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+		 @Html.HiddenFor(model => model.Id)
+
+        <tr>
+            <td>
+			@Html.LabelFor(model => model.RoleName,  new { @class = "control-label x85", @for="RoleName" })
+            </td>
+			<td>
+			 @Html.DisplayFor(model => model.RoleName)
+			</td>
+        </tr>
+        <tr>
+            <td>
+			@Html.LabelFor(model => model.IsSystem,  new { @class = "control-label x85", @for="IsSystem" })
+            </td>
+			<td>
+			 @Html.DisplayFor(model => model.IsSystem)
+			</td>
+        </tr>
+        <tr>
+            <td>
+			@Html.LabelFor(model => model.SortId,  new { @class = "control-label x85", @for="SortId" })
+            </td>
+			<td>
+			 @Html.DisplayFor(model => model.SortId)
+			</td>
+        </tr>
+        <tr>
+            <td>
+			@Html.LabelFor(model => model.DepartmentID,  new { @class = "control-label x85", @for="DepartmentID" })
+            </td>
+			<td>
+			 @Html.DisplayFor(model => model.DepartmentID)
+			</td>
+        </tr>
+		</tbody>
+    </table>
+</div>
+</div>
+<div class="bjui-pageFooter">
+    <ul>
+        <li><button type="button" class="btn-close" data-icon="close">关闭</button></li>
+    </ul>
+</div>
+

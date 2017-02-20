@@ -1,0 +1,786 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3F39A050-1C28-450B-8FCD-E3F391D07F3E}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MVCCMS.NET.Web</RootNamespace>
+    <AssemblyName>MVCCMS.NET.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Dos.Common, Version=1.0.8.8, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dos.Common.1.0.8.8\lib\net40\Dos.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Dos.ORM, Version=1.10.6.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dos.ORM.1.10.6.2\lib\net40\Dos.ORM.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.1\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.1.0\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.1.0\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.1.0\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.1.0\lib\net45\Microsoft.AI.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.1.0\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.2.1.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.3.5\lib\net45\NLog.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admins\AdminsAreaRegistration.cs" />
+    <Compile Include="Areas\Admins\Controllers\AdminsToolsController.cs" />
+    <Compile Include="Areas\Admins\Controllers\LoginController.cs" />
+    <Compile Include="Areas\Admins\Controllers\ManagerController.cs" />
+    <Compile Include="Areas\Admins\Controllers\ManagerLogController.cs" />
+    <Compile Include="Areas\Admins\Controllers\ManagerRoleController.cs" />
+    <Compile Include="Areas\Admins\Controllers\NavigationController.cs" />
+    <Compile Include="Areas\Admins\Controllers\PanelController.cs" />
+    <Compile Include="Controllers\ComToolsController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MVCCMSNETWebContext.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Css\Login.css">
+      <DependentUpon>Login.less</DependentUpon>
+    </Content>
+    <Content Include="Content\Css\Login.min.css">
+      <DependentUpon>Login.css</DependentUpon>
+    </Content>
+    <Content Include="Content\images\group.png" />
+    <Content Include="Content\images\Login\buttonbg.png" />
+    <Content Include="Content\images\Login\cloud.png" />
+    <Content Include="Content\images\Login\lbg.png" />
+    <Content Include="Content\images\Login\lbg1.png" />
+    <Content Include="Content\images\Login\light.png" />
+    <Content Include="Content\images\Login\loginbg1.png" />
+    <Content Include="Content\images\Login\loginbg2.png" />
+    <Content Include="Content\images\Login\loginbg3.png" />
+    <Content Include="Content\images\Login\loginbg4.png" />
+    <Content Include="Content\images\Login\logininfo.png" />
+    <Content Include="Content\images\Login\logininfo1.png" />
+    <Content Include="Content\images\Login\logininfo2.png" />
+    <Content Include="Content\images\Login\logininfo3.png" />
+    <Content Include="Content\images\Login\loginlogo.png" />
+    <Content Include="Content\images\Login\loginlogo.psd" />
+    <Content Include="Content\images\Login\loginpassword.png" />
+    <Content Include="Content\images\Login\loginsj.png" />
+    <Content Include="Content\images\Login\loginuser.png" />
+    <Content Include="Content\images\Login\loginyzmbg.png" />
+    <Content Include="Content\images\Login\logo.png" />
+    <Content Include="Content\images\logo.png" />
+    <Content Include="Content\BJUI\js\bjui-all.js" />
+    <Content Include="Content\BJUI\js\bjui-all.min.js" />
+    <Content Include="Content\BJUI\js\jquery-1.11.3.min.js" />
+    <Content Include="Content\BJUI\js\jquery.cookie.js" />
+    <Content Include="Content\BJUI\other\html5shiv.min.js" />
+    <Content Include="Content\BJUI\other\jquery.iframe-transport.js" />
+    <Content Include="Content\BJUI\other\respond.min.js" />
+    <Content Include="Content\BJUI\plugins\bootstrap.js" />
+    <Content Include="Content\BJUI\plugins\bootstrap.min.js" />
+    <Content Include="Content\BJUI\plugins\bootstrapSelect\bootstrap-select.css" />
+    <Content Include="Content\BJUI\plugins\bootstrapSelect\bootstrap-select.js" />
+    <Content Include="Content\BJUI\plugins\bootstrapSelect\bootstrap-select.min.js" />
+    <Content Include="Content\BJUI\plugins\bootstrapSelect\defaults-zh_CN.js" />
+    <Content Include="Content\BJUI\plugins\bootstrapSelect\defaults-zh_CN.min.js" />
+    <Content Include="Content\BJUI\plugins\colorpicker\css\bootstrap-colorpicker.css" />
+    <Content Include="Content\BJUI\plugins\colorpicker\css\bootstrap-colorpicker.min.css" />
+    <Content Include="Content\BJUI\plugins\colorpicker\img\bootstrap-colorpicker\alpha-horizontal.png" />
+    <Content Include="Content\BJUI\plugins\colorpicker\img\bootstrap-colorpicker\alpha.png" />
+    <Content Include="Content\BJUI\plugins\colorpicker\img\bootstrap-colorpicker\hue-horizontal.png" />
+    <Content Include="Content\BJUI\plugins\colorpicker\img\bootstrap-colorpicker\hue.png" />
+    <Content Include="Content\BJUI\plugins\colorpicker\img\bootstrap-colorpicker\saturation.png" />
+    <Content Include="Content\BJUI\plugins\colorpicker\js\bootstrap-colorpicker.js" />
+    <Content Include="Content\BJUI\plugins\colorpicker\js\bootstrap-colorpicker.min.js" />
+    <Content Include="Content\BJUI\plugins\download\jquery.fileDownload.js" />
+    <Content Include="Content\BJUI\plugins\dragsort\jquery.dragsort-0.5.1.js" />
+    <Content Include="Content\BJUI\plugins\dragsort\jquery.dragsort-0.5.1.min.js" />
+    <Content Include="Content\BJUI\plugins\echarts\chart\bar.js" />
+    <Content Include="Content\BJUI\plugins\echarts\chart\chord.js" />
+    <Content Include="Content\BJUI\plugins\echarts\chart\eventRiver.js" />
+    <Content Include="Content\BJUI\plugins\echarts\chart\force.js" />
+    <Content Include="Content\BJUI\plugins\echarts\chart\funnel.js" />
+    <Content Include="Content\BJUI\plugins\echarts\chart\gauge.js" />
+    <Content Include="Content\BJUI\plugins\echarts\chart\k.js" />
+    <Content Include="Content\BJUI\plugins\echarts\chart\line.js" />
+    <Content Include="Content\BJUI\plugins\echarts\chart\map.js" />
+    <Content Include="Content\BJUI\plugins\echarts\chart\pie.js" />
+    <Content Include="Content\BJUI\plugins\echarts\chart\radar.js" />
+    <Content Include="Content\BJUI\plugins\echarts\chart\scatter.js" />
+    <Content Include="Content\BJUI\plugins\echarts\echarts.js" />
+    <Content Include="Content\BJUI\plugins\echarts\theme\blue.js" />
+    <Content Include="Content\BJUI\plugins\echarts\theme\dark.js" />
+    <Content Include="Content\BJUI\plugins\echarts\theme\default.js" />
+    <Content Include="Content\BJUI\plugins\echarts\theme\gray.js" />
+    <Content Include="Content\BJUI\plugins\echarts\theme\green.js" />
+    <Content Include="Content\BJUI\plugins\echarts\theme\helianthus.js" />
+    <Content Include="Content\BJUI\plugins\echarts\theme\infographic.js" />
+    <Content Include="Content\BJUI\plugins\echarts\theme\macarons.js" />
+    <Content Include="Content\BJUI\plugins\echarts\theme\red.js" />
+    <Content Include="Content\BJUI\plugins\echarts\theme\shine.js" />
+    <Content Include="Content\BJUI\plugins\highcharts\adapters\standalone-framework.js" />
+    <Content Include="Content\BJUI\plugins\highcharts\highcharts-3d.js" />
+    <Content Include="Content\BJUI\plugins\highcharts\highcharts-all.js" />
+    <Content Include="Content\BJUI\plugins\highcharts\highcharts-more.js" />
+    <Content Include="Content\BJUI\plugins\highcharts\highcharts.js" />
+    <Content Include="Content\BJUI\plugins\highcharts\modules\canvas-tools.js" />
+    <Content Include="Content\BJUI\plugins\highcharts\modules\data.js" />
+    <Content Include="Content\BJUI\plugins\highcharts\modules\drilldown.js" />
+    <Content Include="Content\BJUI\plugins\highcharts\modules\exporting.js" />
+    <Content Include="Content\BJUI\plugins\highcharts\modules\funnel.js" />
+    <Content Include="Content\BJUI\plugins\highcharts\modules\heatmap.js" />
+    <Content Include="Content\BJUI\plugins\highcharts\modules\no-data-to-display.js" />
+    <Content Include="Content\BJUI\plugins\highcharts\modules\solid-gauge.js" />
+    <Content Include="Content\BJUI\plugins\highcharts\themes\dark-blue.js" />
+    <Content Include="Content\BJUI\plugins\highcharts\themes\dark-green.js" />
+    <Content Include="Content\BJUI\plugins\highcharts\themes\dark-unica.js" />
+    <Content Include="Content\BJUI\plugins\highcharts\themes\gray.js" />
+    <Content Include="Content\BJUI\plugins\highcharts\themes\grid-light.js" />
+    <Content Include="Content\BJUI\plugins\highcharts\themes\grid.js" />
+    <Content Include="Content\BJUI\plugins\highcharts\themes\sand-signika.js" />
+    <Content Include="Content\BJUI\plugins\highcharts\themes\skies.js" />
+    <Content Include="Content\BJUI\plugins\icheck\icheck.js" />
+    <Content Include="Content\BJUI\plugins\icheck\icheck.min.js" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\attached\test.txt" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\editor-content.css" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\kindeditor-all-min.js" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\kindeditor-all.js" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\kindeditor-all.min.js" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\kindeditor-min.js" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\kindeditor.js" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\lang\ar.js" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\lang\en.js" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\lang\ko.js" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\lang\zh_CN.js" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\lang\zh_TW.js" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\license.txt" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\anchor\anchor.js" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\autoheight\autoheight.js" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\baidumap\baidumap.js" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\baidumap\index.html" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\baidumap\map.html" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\clearhtml\clearhtml.js" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\code\code.js" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\code\prettify.css" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\code\prettify.js" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\emoticons.js" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\0.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\1.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\10.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\100.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\101.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\102.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\103.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\104.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\105.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\106.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\107.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\108.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\109.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\11.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\110.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\111.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\112.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\113.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\114.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\115.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\116.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\117.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\118.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\119.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\12.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\120.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\121.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\122.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\123.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\124.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\125.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\126.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\127.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\128.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\129.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\13.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\130.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\131.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\132.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\133.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\134.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\14.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\15.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\16.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\17.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\18.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\19.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\2.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\20.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\21.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\22.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\23.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\24.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\25.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\26.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\27.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\28.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\29.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\3.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\30.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\31.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\32.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\33.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\34.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\35.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\36.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\37.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\38.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\39.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\4.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\40.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\41.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\42.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\43.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\44.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\45.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\46.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\47.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\48.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\49.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\5.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\50.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\51.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\52.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\53.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\54.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\55.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\56.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\57.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\58.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\59.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\6.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\60.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\61.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\62.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\63.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\64.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\65.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\66.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\67.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\68.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\69.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\7.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\70.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\71.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\72.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\73.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\74.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\75.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\76.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\77.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\78.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\79.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\8.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\80.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\81.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\82.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\83.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\84.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\85.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\86.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\87.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\88.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\89.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\9.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\90.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\91.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\92.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\93.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\94.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\95.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\96.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\97.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\98.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\99.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\emoticons\images\static.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\filemanager\filemanager.js" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\filemanager\images\file-16.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\filemanager\images\file-64.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\filemanager\images\folder-16.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\filemanager\images\folder-64.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\filemanager\images\go-up.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\flash\flash.js" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\image\image.js" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\image\images\align_left.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\image\images\align_right.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\image\images\align_top.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\image\images\refresh.png" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\insertfile\insertfile.js" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\lineheight\lineheight.js" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\link\link.js" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\map\map.html" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\map\map.js" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\media\media.js" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\multiimage\images\image.png" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\multiimage\images\select-files-en.png" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\multiimage\images\select-files-zh_CN.png" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\multiimage\images\swfupload.swf" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\multiimage\multiimage.js" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\pagebreak\pagebreak.js" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\plainpaste\plainpaste.js" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\preview\preview.js" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\quickformat\quickformat.js" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\table\table.js" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\template\html\1.html" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\template\html\2.html" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\template\html\3.html" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\template\template.js" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\plugins\wordpaste\wordpaste.js" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\themes\common\anchor.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\themes\common\blank.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\themes\common\flash.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\themes\common\loading.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\themes\common\media.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\themes\common\rm.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\themes\default\background.png" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\themes\default\default.css" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\themes\default\default.png" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\themes\qq\editor.gif" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\themes\qq\qq.css" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\themes\simple\simple.css" />
+    <Content Include="Content\BJUI\plugins\niceValidator\images\loading.gif" />
+    <Content Include="Content\BJUI\plugins\niceValidator\images\validator_default.png" />
+    <Content Include="Content\BJUI\plugins\niceValidator\images\validator_simple.png" />
+    <Content Include="Content\BJUI\plugins\niceValidator\jquery.validator.css" />
+    <Content Include="Content\BJUI\plugins\niceValidator\jquery.validator.js" />
+    <Content Include="Content\BJUI\plugins\niceValidator\jquery.validator.themes.js" />
+    <Content Include="Content\BJUI\plugins\niceValidator\local\en.js" />
+    <Content Include="Content\BJUI\plugins\other\jquery.autosize.js" />
+    <Content Include="Content\BJUI\plugins\other\respond.js" />
+    <Content Include="Content\BJUI\plugins\styles\zTreeStyle\img\diy\1_close.png" />
+    <Content Include="Content\BJUI\plugins\styles\zTreeStyle\img\diy\1_open.png" />
+    <Content Include="Content\BJUI\plugins\styles\zTreeStyle\img\diy\2.png" />
+    <Content Include="Content\BJUI\plugins\styles\zTreeStyle\img\diy\3.png" />
+    <Content Include="Content\BJUI\plugins\styles\zTreeStyle\img\diy\4.png" />
+    <Content Include="Content\BJUI\plugins\styles\zTreeStyle\img\diy\5.png" />
+    <Content Include="Content\BJUI\plugins\styles\zTreeStyle\img\diy\6.png" />
+    <Content Include="Content\BJUI\plugins\styles\zTreeStyle\img\diy\7.png" />
+    <Content Include="Content\BJUI\plugins\styles\zTreeStyle\img\diy\8.png" />
+    <Content Include="Content\BJUI\plugins\styles\zTreeStyle\img\diy\9.png" />
+    <Content Include="Content\BJUI\plugins\styles\zTreeStyle\img\line_conn.gif" />
+    <Content Include="Content\BJUI\plugins\styles\zTreeStyle\img\loading.gif" />
+    <Content Include="Content\BJUI\plugins\styles\zTreeStyle\img\zTreeStandard.gif" />
+    <Content Include="Content\BJUI\plugins\styles\zTreeStyle\img\zTreeStandard.png" />
+    <Content Include="Content\BJUI\plugins\styles\zTreeStyle\zTreeStyle.css" />
+    <Content Include="Content\BJUI\plugins\swfupload\swfupload.js" />
+    <Content Include="Content\BJUI\plugins\swfupload\swfupload.min.js" />
+    <Content Include="Content\BJUI\plugins\uploadify\css\uploadify.css" />
+    <Content Include="Content\BJUI\plugins\uploadify\img\add.jpg" />
+    <Content Include="Content\BJUI\plugins\uploadify\img\cancel.jpg" />
+    <Content Include="Content\BJUI\plugins\uploadify\img\delete.jpg" />
+    <Content Include="Content\BJUI\plugins\uploadify\img\upload.jpg" />
+    <Content Include="Content\BJUI\plugins\uploadify\img\uploadify-cancel.png" />
+    <Content Include="Content\BJUI\plugins\uploadify\scripts\jquery.uploadify.js" />
+    <Content Include="Content\BJUI\plugins\uploadify\scripts\jquery.uploadify.min.js" />
+    <Content Include="Content\BJUI\plugins\uploadify\scripts\uploadify.swf" />
+    <Content Include="Content\BJUI\plugins\ztree\jquery.ztree.all-3.5.js" />
+    <Content Include="Content\BJUI\plugins\ztree\jquery.ztree.all-3.5.min.js" />
+    <Content Include="Content\BJUI\plugins\ztree\jquery.ztree.core-3.5.js" />
+    <Content Include="Content\BJUI\plugins\ztree\jquery.ztree.core-3.5.min.js" />
+    <Content Include="Content\BJUI\plugins\ztree\jquery.ztree.excheck-3.5.js" />
+    <Content Include="Content\BJUI\plugins\ztree\jquery.ztree.excheck-3.5.min.js" />
+    <Content Include="Content\BJUI\plugins\ztree\jquery.ztree.exedit-3.5.js" />
+    <Content Include="Content\BJUI\plugins\ztree\jquery.ztree.exedit-3.5.min.js" />
+    <Content Include="Content\BJUI\plugins\ztree\jquery.ztree.exhide-3.5.js" />
+    <Content Include="Content\BJUI\plugins\ztree\jquery.ztree.exhide-3.5.min.js" />
+    <Content Include="Content\BJUI\themes\blue\core.css" />
+    <Content Include="Content\BJUI\themes\blue\purple%402x.png" />
+    <Content Include="Content\BJUI\themes\blue\purple.png" />
+    <Content Include="Content\BJUI\themes\blue\topbg.png" />
+    <Content Include="Content\BJUI\themes\blue\zTreeStandard.png" />
+    <Content Include="Content\BJUI\themes\css\bootstrap.css" />
+    <Content Include="Content\BJUI\themes\css\bootstrap.min.css" />
+    <Content Include="Content\BJUI\themes\css\FA\css\font-awesome.css" />
+    <Content Include="Content\BJUI\themes\css\FA\css\font-awesome.min.css" />
+    <Content Include="Content\BJUI\themes\css\FA\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\BJUI\themes\css\ie7.css" />
+    <Content Include="Content\BJUI\themes\css\img\changed-flag-icon.png" />
+    <Content Include="Content\BJUI\themes\css\img\diy\1_close.png" />
+    <Content Include="Content\BJUI\themes\css\img\diy\1_open.png" />
+    <Content Include="Content\BJUI\themes\css\img\diy\2.png" />
+    <Content Include="Content\BJUI\themes\css\img\diy\3.png" />
+    <Content Include="Content\BJUI\themes\css\img\diy\4.png" />
+    <Content Include="Content\BJUI\themes\css\img\diy\5.png" />
+    <Content Include="Content\BJUI\themes\css\img\diy\6.png" />
+    <Content Include="Content\BJUI\themes\css\img\diy\7.png" />
+    <Content Include="Content\BJUI\themes\css\img\diy\8.png" />
+    <Content Include="Content\BJUI\themes\css\img\diy\9.png" />
+    <Content Include="Content\BJUI\themes\css\img\error-bg.png" />
+    <Content Include="Content\BJUI\themes\css\img\line_conn.gif" />
+    <Content Include="Content\BJUI\themes\css\img\line_conn.png" />
+    <Content Include="Content\BJUI\themes\css\img\loading.gif" />
+    <Content Include="Content\BJUI\themes\css\img\logo.png" />
+    <Content Include="Content\BJUI\themes\css\style.css" />
+    <Content Include="Content\BJUI\themes\default\core.css" />
+    <Content Include="Content\BJUI\themes\default\purple%402x.png" />
+    <Content Include="Content\BJUI\themes\default\purple.png" />
+    <Content Include="Content\BJUI\themes\default\topbg.png" />
+    <Content Include="Content\BJUI\themes\default\zTreeStandard.png" />
+    <Content Include="Content\BJUI\themes\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\BJUI\themes\green\core.css" />
+    <Content Include="Content\BJUI\themes\green\purple%402x.png" />
+    <Content Include="Content\BJUI\themes\green\purple.png" />
+    <Content Include="Content\BJUI\themes\green\topbg.png" />
+    <Content Include="Content\BJUI\themes\green\zTreeStandard.png" />
+    <Content Include="Content\BJUI\themes\orange\core.css" />
+    <Content Include="Content\BJUI\themes\orange\purple%402x.png" />
+    <Content Include="Content\BJUI\themes\orange\purple.png" />
+    <Content Include="Content\BJUI\themes\orange\topbg.png" />
+    <Content Include="Content\BJUI\themes\orange\zTreeStandard.png" />
+    <Content Include="Content\BJUI\themes\purple\core.css" />
+    <Content Include="Content\BJUI\themes\purple\purple%402x.png" />
+    <Content Include="Content\BJUI\themes\purple\purple.png" />
+    <Content Include="Content\BJUI\themes\purple\topbg.png" />
+    <Content Include="Content\BJUI\themes\purple\zTreeStandard.png" />
+    <Content Include="Content\BJUI\themes\css\doc.css" />
+    <Content Include="Content\images\logo.psd" />
+    <Content Include="Content\Js\cloud.js" />
+    <Content Include="Content\Js\Login.js" />
+    <Content Include="Content\Plugins\jquery\jquery-1.11.2.js" />
+    <Content Include="Content\Plugins\jquery\jquery-1.11.2.min.js" />
+    <Content Include="Content\Plugins\jquery\jquery-1.8.2.js" />
+    <Content Include="Content\Plugins\jquery\jquery-1.8.2.min.js" />
+    <Content Include="Content\Plugins\jquery\jquery-2.1.4.js" />
+    <Content Include="Content\Plugins\jquery\jquery-2.1.4.min.js" />
+    <Content Include="Content\Plugins\jquery\jquery.jcarousellite.min.js" />
+    <Content Include="Content\Plugins\jquery\jquery.unobtrusive-ajax.js" />
+    <Content Include="Content\Plugins\jquery\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Content\Css\Login.less" />
+    <Content Include="Areas\Admins\Views\Login\LoginMin.cshtml" />
+    <Content Include="Areas\Admins\Views\Panel\ChangePwd.cshtml" />
+    <None Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
+    <None Include="Content\Plugins\jquery\jquery.validate-vsdoc.js" />
+    <Content Include="Content\Plugins\jquery\jquery.validate.js" />
+    <Content Include="Content\Plugins\jquery\jquery.validate.min.js" />
+    <Content Include="Content\Plugins\jquery\jquery.validate.unobtrusive.js" />
+    <Content Include="Content\Plugins\jquery\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Content\Plugins\layer\extend\layer.ext.js" />
+    <Content Include="Content\Plugins\layer\layer.js" />
+    <Content Include="Content\Plugins\layer\skin\default\icon-ext.png" />
+    <Content Include="Content\Plugins\layer\skin\default\icon.png" />
+    <Content Include="Content\Plugins\layer\skin\default\loading-0.gif" />
+    <Content Include="Content\Plugins\layer\skin\default\loading-1.gif" />
+    <Content Include="Content\Plugins\layer\skin\default\loading-2.gif" />
+    <Content Include="Content\Plugins\layer\skin\espresso\close.png" />
+    <Content Include="Content\Plugins\layer\skin\espresso\icon.png" />
+    <Content Include="Content\Plugins\layer\skin\espresso\style.css" />
+    <Content Include="Content\Plugins\layer\skin\layer.css" />
+    <Content Include="Content\Plugins\layer\skin\layer.ext.css" />
+    <Content Include="Content\Plugins\layer\skin\moon\default.png" />
+    <Content Include="Content\Plugins\layer\skin\moon\style.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Areas\Admins\Views\web.config" />
+    <Content Include="Areas\Admins\Views\Login\Index.cshtml" />
+    <Content Include="Content\BJUI\js\bjui-all.min.js.map" />
+    <Content Include="Content\BJUI\plugins\bootstrapSelect\bootstrap-select.css.map" />
+    <Content Include="Content\BJUI\plugins\bootstrapSelect\bootstrap-select.js.map" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\php\demo.php" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\php\file_manager_json.php" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\php\JSON.php" />
+    <Content Include="Content\BJUI\plugins\kindeditor_4.1.10\php\upload_json.php" />
+    <Content Include="Content\BJUI\themes\css\FA\css\font-awesome.css.map" />
+    <Content Include="Content\BJUI\themes\css\FA\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\BJUI\themes\css\FA\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\BJUI\themes\css\FA\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\BJUI\themes\css\FA\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\BJUI\themes\css\FA\fonts\FontAwesome.otf" />
+    <Content Include="Content\BJUI\themes\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\BJUI\themes\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\BJUI\themes\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Areas\Admins\Views\Panel\Layout.cshtml" />
+    <Content Include="CodeTemplates\ApiControllerEmpty\Controller.cs.t4" />
+    <Content Include="CodeTemplates\ApiControllerWithActions\Controller.cs.t4" />
+    <Content Include="CodeTemplates\ApiControllerWithContext\Controller.cs.t4" />
+    <Content Include="CodeTemplates\ApiDependencyCodeGenerator\Global.asax.cs.t4" />
+    <Content Include="CodeTemplates\ApiDependencyCodeGenerator\Global.cs.t4" />
+    <Content Include="CodeTemplates\ApiDependencyCodeGenerator\WebApiConfig.cs.t4" />
+    <Content Include="CodeTemplates\MvcArea\Area.cs.t4" />
+    <Content Include="CodeTemplates\MvcArea\web.cs.t4" />
+    <Content Include="CodeTemplates\MvcControllerEmpty\Controller.cs.t4" />
+    <Content Include="CodeTemplates\MvcControllerWithContext\Controller.cs.t4" />
+    <Content Include="CodeTemplates\MvcFullDependencyCodeGenerator\BundleConfig.cs.t4" />
+    <Content Include="CodeTemplates\MvcFullDependencyCodeGenerator\FilterConfig.cs.t4" />
+    <Content Include="CodeTemplates\MvcFullDependencyCodeGenerator\Global.asax.cs.t4" />
+    <Content Include="CodeTemplates\MvcFullDependencyCodeGenerator\Global.cs.t4" />
+    <Content Include="CodeTemplates\MvcFullDependencyCodeGenerator\RouteConfig.cs.t4" />
+    <Content Include="CodeTemplates\MvcFullDependencyCodeGenerator\web.cs.t4" />
+    <Content Include="CodeTemplates\MvcFullDependencyCodeGenerator\_Layout.cs.t4" />
+    <Content Include="CodeTemplates\MvcFullDependencyCodeGenerator\_ViewStart.cs.t4" />
+    <Content Include="CodeTemplates\MvcMinimalDependencyCodeGenerator\Global.asax.cs.t4" />
+    <Content Include="CodeTemplates\MvcMinimalDependencyCodeGenerator\Global.cs.t4" />
+    <Content Include="CodeTemplates\MvcMinimalDependencyCodeGenerator\RouteConfig.cs.t4" />
+    <Content Include="CodeTemplates\MvcMinimalDependencyCodeGenerator\web.cs.t4" />
+    <Content Include="CodeTemplates\MvcViewWithoutModel\Empty.cs.t4" />
+    <Content Include="CodeTemplates\MvcViewWithoutModel\Imports.include.t4" />
+    <Content Include="CodeTemplates\MvcView\Create.cs.t4" />
+    <Content Include="CodeTemplates\MvcView\Delete.cs.t4" />
+    <Content Include="CodeTemplates\MvcView\Details.cs.t4" />
+    <Content Include="CodeTemplates\MvcView\Edit.cs.t4" />
+    <Content Include="CodeTemplates\MvcView\Empty.cs.t4" />
+    <Content Include="CodeTemplates\MvcView\Imports.include.t4" />
+    <Content Include="CodeTemplates\MvcView\List.cs.t4" />
+    <Content Include="CodeTemplates\MvcView\ModelMetadataFunctions.cs.include.t4" />
+    <Content Include="CodeTemplates\ODataControllerWithContext\Controller.cs.t4" />
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CodeTemplates\MvcControllerWithContext\Controller.cs - 复制.t4" />
+    <Content Include="CodeTemplates\MvcView\List.cs - 复制.t4" />
+    <Content Include="CodeTemplates\MvcView\Create.cs - 复制.t4" />
+    <Content Include="CodeTemplates\MvcView\Edit.cs - 复制.t4" />
+    <Content Include="Areas\Admins\Views\Manager\Edit.cshtml" />
+    <Content Include="Areas\Admins\Views\Manager\Create.cshtml" />
+    <Content Include="CodeTemplates\MvcView\Details.cs - 复制.t4" />
+    <Content Include="Areas\Admins\Views\Manager\Details.cshtml" />
+    <Content Include="Areas\Admins\Views\ManagerLog\Index.cshtml" />
+    <Content Include="Areas\Admins\Views\ManagerRole\Create.cshtml" />
+    <Content Include="Areas\Admins\Views\ManagerRole\Delete.cshtml" />
+    <Content Include="Areas\Admins\Views\ManagerRole\Details.cshtml" />
+    <Content Include="Areas\Admins\Views\ManagerRole\Edit.cshtml" />
+    <Content Include="Areas\Admins\Views\Navigation\Create.cshtml" />
+    <Content Include="Areas\Admins\Views\Navigation\Delete.cshtml" />
+    <Content Include="Areas\Admins\Views\Navigation\Details.cshtml" />
+    <Content Include="Areas\Admins\Views\Navigation\Edit.cshtml" />
+    <Content Include="Areas\Admins\Views\Navigation\Index.cshtml" />
+    <Content Include="Areas\Admins\Views\ManagerRole\Index.cshtml" />
+    <Content Include="Areas\Admins\Views\Manager\Index.cshtml" />
+    <Content Include="Areas\Admins\Views\Panel\Index.cshtml" />
+    <None Include="CodeTemplates\MvcControllerWithActions\Controller.cs.t4" />
+    <Content Include="Areas\Admins\Views\ManagerLog\Details.cshtml" />
+    <None Include="NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\PublishProfiles\NewSystem.pubxml" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admins\Views\Shared\" />
+    <Folder Include="Views\ComTools\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+    <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MVCCMS.NET.Com\MVCCMS.NET.Com.csproj">
+      <Project>{8733a3dd-c9e8-4e30-a5bc-b11c209ece7a}</Project>
+      <Name>MVCCMS.NET.Com</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MVCCMS.NET.Dal\MVCCMS.NET.Dal.csproj">
+      <Project>{83ab439d-ea2e-44d5-878f-1b3e2bd719c0}</Project>
+      <Name>MVCCMS.NET.Dal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MVCCMS.NET.Filter\MVCCMS.NET.Filter.csproj">
+      <Project>{27aa9965-f1a5-41d1-aba2-17766188782c}</Project>
+      <Name>MVCCMS.NET.Filter</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MVCCMS.NET.Model\MVCCMS.NET.Model.csproj">
+      <Project>{194b2a76-edec-4439-a9d4-2093c309c6a1}</Project>
+      <Name>MVCCMS.NET.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>35345</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:35341/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

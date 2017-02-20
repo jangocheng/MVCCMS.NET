@@ -1,0 +1,39 @@
+﻿@{
+    Layout = null;
+}
+<div class="bjui-pageContent tableContent">
+    <div class="bjui-doc">
+        <form action="@Url.Action("ChangePwd")" data-toggle="validate">
+            @Html.AntiForgeryToken()
+            <table class="table table-bordered table-striped table-condensed table-hover" width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            @Html.Label("旧密码" , new { @class = "control-label x85" , @for = "Password" })
+                            <input type="password" name="oldPassword" id="oldPassword" value="" data-rule="旧密码:required" size="15">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.Label("新密码" , new { @class = "control-label x85" , @for = "Password" })
+                            <input type="password" name="Password" id="Password" value="" data-rule="新密码:required" size="15">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            @Html.Label("确认新密码" , new { @class = "control-label x85" , @for = "Password" })
+                            <input type="password" name="Password2" id="Password2" value="" data-rule="确认密码:required;match(Password)" size="15">
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>
+<div class="bjui-pageFooter">
+    <ul>
+        <li><button type="submit" class="btn-default" data-icon="save">修改密码</button></li>
+    </ul>
+</div>

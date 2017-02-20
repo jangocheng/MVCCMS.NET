@@ -1,0 +1,158 @@
+﻿@using MVCCMS.NET.Filter
+@using MVCCMS.NET.Model
+@model MVCCMS.NET.Model.Navigation
+@{
+    ViewBag.Title = "Create";
+    Layout = null;
+    var ShowNav = ViewBag.ShowNav as List<Navigation>;
+}
+<script type="text/javascript">
+    //选择事件
+    function S_NodeCheck(e, treeId, treeNode) {
+        var zTree = $.fn.zTree.getZTreeObj(treeId),
+            nodes = zTree.getCheckedNodes(true)
+        var ids = '', names = ''
+
+        for (var i = 0; i < nodes.length; i++) {
+            ids += ',' + nodes[i].id
+            names += ',' + nodes[i].name
+        }
+        if (ids.length > 0) {
+            ids = ids.substr(1), names = names.substr(1)
+        }
+
+        var $from = $('#' + treeId).data('fromObj')
+
+        //if ($from && $from.length) $from.val(names)
+        if ($from && $from.length) $from.val(ids)
+    }
+    //单击事件
+    function S_NodeClick(event, treeId, treeNode) {
+        var zTree = $.fn.zTree.getZTreeObj(treeId)
+
+        zTree.checkNode(treeNode, !treeNode.checked, true, true)
+
+        event.preventDefault()
+    }
+</script>
+
+<div class="bjui-pageContent tableContent">
+    <div class="bjui-doc">
+        @*<h3 class="page-header">页面说明</h3>
+            <blockquote>
+                <p>提示</p>
+            </blockquote>
+            <blockquote class="point">
+                <p>提示2</p>
+            </blockquote>*@
+        <form action="@Url.Action("Create")" data-toggle="validate">
+            @Html.AntiForgeryToken()
+            <table class="table table-bordered table-striped table-condensed table-hover" width="100%">
+                <tbody>
+                    @Html.ValidationSummary(true , "" , new { @class = "text-danger" })
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.ParentId , new { @class = "control-label x85" , @for = "ParentId" })
+                            <input type="text" name="ParentId" id="ParentId" value="" size="20" data-toggle="selectztree" data-rule="required" data-tree="#j_select_tree2" readonly>
+                            <ul id="j_select_tree2" class="ztree hide" data-toggle="ztree" data-expand-all="true" data-check-enable="true" data-chk-style="radio" data-radio-type="all" data-on-check="S_NodeCheck" data-on-click="S_NodeClick">
+                                <li data-id="0" data-pid="0">无父级</li>
+                                @{
+                                    foreach (var item in ShowNav)
+                                    {
+                                        <li data-id="@item.Id" data-pid="@item.ParentId">@item.Title</li>
+                                    }
+                                }
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.NavType , new { @class = "control-label x85" , @for = "NavType" })
+                            <input type="text" name="NavType" id="NavType" value="" data-rule="required" size="20">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.Name , new { @class = "control-label x85" , @for = "Name" })
+                            <input type="text" name="Name" id="Name" value="" data-rule="required;Name;remote[@Url.Action("VerifyNavigationsName","AdminsTools")]" size="15">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.Title , new { @class = "control-label x85" , @for = "Title" })
+                            <input type="text" name="Title" id="Title" value="" data-rule="required" size="15">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.SubTitle , new { @class = "control-label x85" , @for = "SubTitle" })
+                            <input type="text" name="SubTitle" id="SubTitle" value="" size="15">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.IconUrl , new { @class = "control-label x85" , @for = "IconUrl" })
+                            <input type="text" name="IconUrl" id="IconUrl" value="" size="15">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.LinkUrl , new { @class = "control-label x85" , @for = "LinkUrl" })
+                            <input type="text" name="LinkUrl" id="LinkUrl" value="" size="15">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.SortId , new { @class = "control-label x85" , @for = "SortId" })
+                            <input type="text" name="SortId" id="SortId" value="1" size="5" data-toggle="spinner" data-min="0" data-max="100" data-step="1" data-rule="integer">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.IsLock , new { @class = "control-label x85" , @for = "IsLock" })
+                            <input type="radio" name="IsLock" id="IsLock1" data-toggle="icheck" value="true" data-rule="checked" data-label="是">
+                            <input type="radio" name="IsLock" id="IsLock2" data-toggle="icheck" value="false" data-label="否">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.Remark , new { @class = "control-label x85" , @for = "Remark" })
+                            <input type="text" name="Remark" id="Remark" value="" size="15">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.ActionType , new { @class = "control-label x85" , @for = "ActionType" })
+                            @{
+                                var controllerPermissions = ViewBag.ControllerAndAction as List<ControllerPermission>;
+                            }
+                            <select name="ActionType" id="ActionType"  data-toggle="selectpicker">
+                                <option value="">--请选择操作权限--</option>
+                                @foreach (var permission in controllerPermissions)
+                                {
+                                    <option value="@permission.ControllerName">@permission.Description</option>
+                                }
+                            </select>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            @Html.LabelFor(model => model.IsSystem , new { @class = "control-label x85" , @for = "IsSystem" })
+                            <input type="radio" name="IsSystem" id="IsSystem1" data-toggle="icheck" value="true" data-rule="checked" data-label="是">
+                            <input type="radio" name="IsSystem" id="IsSystem2" data-toggle="icheck" value="false" data-label="否">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>
+<div class="bjui-pageFooter">
+    <ul>
+        <li><button type="button" class="btn-close" data-icon="close">取消</button></li>
+        <li><button type="submit" class="btn-default" data-icon="save">保存</button></li>
+    </ul>
+</div>
+

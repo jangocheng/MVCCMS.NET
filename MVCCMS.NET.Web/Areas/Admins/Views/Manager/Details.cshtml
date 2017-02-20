@@ -1,0 +1,106 @@
+﻿
+@using MVCCMS.NET.Web.Areas.Admins.Controllers
+@model MVCCMS.NET.Model.Manager
+
+@{
+    ViewBag.Title = "Details";
+    Layout = null;
+}
+
+<div class="bjui-pageContent tableContent">
+    <div class="bjui-doc">
+        @*<h3 class="page-header">页面说明</h3>
+            <blockquote>
+                <p>提示</p>
+            </blockquote>
+            <blockquote class="point">
+                <p>提示2</p>
+            </blockquote>*@
+        @Html.AntiForgeryToken()
+        <table class="table table-bordered table-striped table-condensed table-hover" width="100%">
+            <tbody>
+                @Html.ValidationSummary(true , "" , new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.Id)
+
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.Username , new { @class = "control-label x85" , @for = "Username" })
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.Username)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.Password , new { @class = "control-label x85" , @for = "Password" })
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.Password)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.Nickname , new { @class = "control-label x85" , @for = "Nickname" })
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.Nickname)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.Description , new { @class = "control-label x85" , @for = "Description" })
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.Description)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.IsSystem , new { @class = "control-label x85" , @for = "IsSystem" })
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.IsSystem)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.RoleId , new { @class = "control-label x85" , @for = "RoleId" })
+                    </td>
+                    <td>
+                        @AdminsToolsController.GetManagerRoleName(Model.RoleId)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.AddTime , new { @class = "control-label x85" , @for = "AddTime" })
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.AddTime)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.LastLoginTime , new { @class = "control-label x85" , @for = "LastLoginTime" })
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.LastLoginTime)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.IsLock , new { @class = "control-label x85" , @for = "IsLock" })
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.IsLock)
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="bjui-pageFooter">
+    <ul>
+        <li><button type="button" class="btn-close" data-icon="close">关闭</button></li>
+    </ul>
+</div>
+
